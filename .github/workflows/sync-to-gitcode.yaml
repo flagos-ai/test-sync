@@ -44,7 +44,7 @@ jobs:
           cd testsync
           git checkout main
           echo "adding new remote to github"
-          git remote add github git@github.com:flagos-ai/test-sync.git
+          git remote add github https://github.com/flagos-ai/test-sync.git
           echo "fetching github branches"
           git fetch github
           git status
