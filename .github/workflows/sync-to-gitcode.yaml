@@ -33,7 +33,8 @@ jobs:
           git config user.name weixin_39841130
           git config user.email weixin_39841130@noreply.gitcode.com
           git config pull.rebase true
-          git fetch gitcode
-          git checkout -B main gitcode/main
+          git checkout -b gitcode-main gitcode/main
           git rebase origin/main -f
+          git branch -D main
+          git branch -m main
           git push -u gitcode main
