@@ -37,8 +37,6 @@ jobs:
 #           set-safe-directory: true
       - id: checkout
         run: |
-          git config global user.name weixin_39841130
-          git config global user.email weixin_39841130@noreply.gitcode.com
           git clone git@gitcode.com:flagos-ai/testsync.git testsync
 
       - id: rebase
@@ -53,4 +51,6 @@ jobs:
           echo "git rebase"
           git rebase github/main
           echo "git push"
+          git config global user.name weixin_39841130
+          git config global user.email weixin_39841130@noreply.gitcode.com
           git push -u origin main -f
