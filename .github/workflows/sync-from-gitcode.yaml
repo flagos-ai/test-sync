@@ -1,0 +1,23 @@
+on:
+
+  workflow_dispatch: 
+
+jobs:
+  sync-ntmain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ntmain
+      - id: setup-ssh-agent
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.GITCODE_SSH_KEY }}
+      - id: fetch-gitcode
+        run: |
+          git remote add gitcode git@gitcode.com:flagos-ai/testsync.git
+          git config user.name weixin_39841130
+          git config user.email weixin_39841130@noreply.gitcode.com
+          git fetch gitcode
+          git rebase gitcode/ntmain
+          git push -u origin
