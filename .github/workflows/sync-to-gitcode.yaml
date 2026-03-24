@@ -25,19 +25,30 @@ jobs:
       - id: add-know-hosts
         run: |
           ssh-keyscan gitcode.com >> ~/.ssh/known_hosts
-      - id: checkout
-        uses: actions/checkout@v6
-        with:
-          repository: git@gitcode.com:flagos-ai/testsync.git
-          ref: main
-          ssh-user: weixin_39841130
-          ssh-strict: true
-          persist-credentials: true
-          clean: true
-          set-safe-directory: true
+#       - id: checkout
+#         uses: actions/checkout@v6
+#         with:
+#           repository: git@gitcode.com:flagos-ai/testsync.git
+#           ref: main
+#           ssh-user: weixin_39841130
+#           ssh-strict: true
+#           persist-credentials: true
+#           clean: true
+#           set-safe-directory: true
+#       - id: rebase
+#         run: |
+#           git config global user.name weixin_39841130
+#           git config global user.email weixin_39841130@noreply.gitcode.com
+#           git clone git@gitcode.com:flagos-ai/testsync.git
+#           git checkout main
+#           echo "adding new remote to github"
       - id: rebase
         run: |
           git remote add github git@github.com:flagos-ai/test-sync.git
+          echo "fetching github branches"
           git fetch github
+          git status
+          echo "git rebase"
           git rebase github/main
-          git push -u origin main
+          echo "git push"
+          git push -u origin main -f
