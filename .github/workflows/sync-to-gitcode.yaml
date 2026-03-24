@@ -1,0 +1,36 @@
+on:
+
+  workflow_dispatch: 
+
+  push:
+    branches:
+      - main
+
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+    
+
+jobs:
+  sync-main:
+    if: ${{ github.event.pull_request.merged == true }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - id: setup-ssh-agent
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.GITCODE_SSH_KEY }}
+      - id: add-know-hosts
+        run: |
+          ssh-keyscan gitcode.com >> ~/.ssh/known_hosts
+      - id: fetch-gitcode
+        run: |
+          git remote add gitcode git@gitcode.com:flagos-ai/testsync.git
+          git config user.name weixin_39841130
+          git config user.email weixin_39841130@noreply.gitcode.com
+          git checkout gitcode/main
+          git rebase origin/main
+          git push -u gitcode main -f
