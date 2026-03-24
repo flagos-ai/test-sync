@@ -23,4 +23,4 @@ jobs:
           git config user.email weixin_39841130@noreply.gitcode.com
           git fetch gitcode
           git rebase gitcode/ntmain
-          git push -u origin
+          git push -u origin ntmain -f
