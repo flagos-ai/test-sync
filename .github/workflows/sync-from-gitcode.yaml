@@ -1,3 +1,4 @@
+name: Sync from Gitcode
 on:
 
   workflow_dispatch: 
