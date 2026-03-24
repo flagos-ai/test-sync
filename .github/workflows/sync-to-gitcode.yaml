@@ -35,15 +35,16 @@ jobs:
 #           persist-credentials: true
 #           clean: true
 #           set-safe-directory: true
-#       - id: rebase
-#         run: |
-#           git config global user.name weixin_39841130
-#           git config global user.email weixin_39841130@noreply.gitcode.com
-#           git clone git@gitcode.com:flagos-ai/testsync.git
-#           git checkout main
-#           echo "adding new remote to github"
+      - id: checkout
+        run: |
+          git config global user.name weixin_39841130
+          git config global user.email weixin_39841130@noreply.gitcode.com
+          git clone git@gitcode.com:flagos-ai/testsync.git
+          git checkout main
+
       - id: rebase
         run: |
+          echo "adding new remote to github"
           git remote add github git@github.com:flagos-ai/test-sync.git
           echo "fetching github branches"
           git fetch github
