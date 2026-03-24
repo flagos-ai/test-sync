@@ -39,11 +39,12 @@ jobs:
         run: |
           git config global user.name weixin_39841130
           git config global user.email weixin_39841130@noreply.gitcode.com
-          git clone git@gitcode.com:flagos-ai/testsync.git
-          git checkout main
+          git clone git@gitcode.com:flagos-ai/testsync.git testsync
 
       - id: rebase
         run: |
+          cd testsync
+          git checkout main
           echo "adding new remote to github"
           git remote add github git@github.com:flagos-ai/test-sync.git
           echo "fetching github branches"
