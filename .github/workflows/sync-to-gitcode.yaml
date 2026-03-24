@@ -33,7 +33,7 @@ jobs:
           git remote add gitcode git@gitcode.com:flagos-ai/testsync.git
           git config user.name weixin_39841130
           git config user.email weixin_39841130@noreply.gitcode.com
-          git config pull.rebase true
+          git fetch --depth=1000000 gitcode
           git fetch --unshallow gitcode
           git checkout -B main origin/main 
           git push -u gitcode main -f
