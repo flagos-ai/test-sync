@@ -51,6 +51,6 @@ jobs:
           echo "git rebase"
           git rebase github/main
           echo "git push"
-          git config global user.name weixin_39841130
-          git config global user.email weixin_39841130@noreply.gitcode.com
+          git config --global user.name weixin_39841130
+          git config --global user.email weixin_39841130@noreply.gitcode.com
           git push -u origin main -f
