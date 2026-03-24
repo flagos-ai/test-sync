@@ -2,18 +2,24 @@ on:
 
   workflow_dispatch: 
 
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
       - main
 
+#   pull_request:
+#     types:
+#       - closed
+#     branches:
+#       - main
+
 jobs:
   sync-main:
-    if: ${{ github.event.pull_request.merged == true }}
+    # if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: main
       - id: setup-ssh-agent
         uses: webfactory/ssh-agent@v0.8.0
         with:
