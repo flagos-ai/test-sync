@@ -13,6 +13,9 @@ jobs:
         uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.GITCODE_SSH_KEY }}
+      - id: add-know-hosts
+        run: |
+          ssh-keyscan gitcode.com >> ~/.ssh/known_hosts
       - id: fetch-gitcode
         run: |
           git remote add gitcode git@gitcode.com:flagos-ai/testsync.git
