@@ -27,6 +27,7 @@ jobs:
       - id: add-know-hosts
         run: |
           ssh-keyscan gitcode.com >> ~/.ssh/known_hosts
+          gh cache delete --all
       - id: fetch-gitcode
         run: |
           git remote add gitcode git@gitcode.com:flagos-ai/testsync.git
