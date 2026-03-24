@@ -17,9 +17,6 @@ jobs:
     # if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-        with:
-          ref: main
       - id: setup-ssh-agent
         uses: webfactory/ssh-agent@v0.8.0
         with:
@@ -29,13 +26,11 @@ jobs:
           ssh-keyscan gitcode.com >> ~/.ssh/known_hosts
       - id: fetch-gitcode
         run: |
-          git remote add gitcode git@gitcode.com:flagos-ai/testsync.git
-          git config user.name weixin_39841130
-          git config user.email weixin_39841130@noreply.gitcode.com
-          git config pull.rebase true
-          git fetch gitcode
-          git checkout -b gitcode-main gitcode/main
-          git rebase origin/main -f
-          git branch -D main
-          git branch -m main
-          git push -u gitcode main
+          git config global user.name weixin_39841130
+          git config global user.email weixin_39841130@noreply.gitcode.com
+          git clone git@gitcode.com:flagos-ai/testsync.git
+          git checkout main
+          git remote add github git@github.com:flagos-ai/test-sync.git
+          git fetch github
+          git rebase github/main
+          git push
