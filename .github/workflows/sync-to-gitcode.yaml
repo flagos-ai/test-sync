@@ -30,6 +30,7 @@ jobs:
           git config global user.name weixin_39841130
           git config global user.email weixin_39841130@noreply.gitcode.com
           git clone git@gitcode.com:flagos-ai/testsync.git
+          cd testsync
           git checkout main
           git remote add github git@github.com:flagos-ai/test-sync.git
           git fetch github
