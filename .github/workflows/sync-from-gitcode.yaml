@@ -3,6 +3,10 @@ on:
 
   workflow_dispatch: 
 
+  repository_dispatch:
+    types:
+      - ntmain-updated
+      
 jobs:
   sync-ntmain:
     runs-on: ubuntu-latest
